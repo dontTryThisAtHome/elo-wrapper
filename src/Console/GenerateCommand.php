@@ -3,42 +3,42 @@
 namespace EloWrapper\Console;
 
 use Illuminate\Console\Command;
-use EloWrapper\Generators\ModelGenerator;
+use EloWrapper\Generators\WrapperGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 
-class ModelCommand extends Command
+class GenerateCommand extends Command
 {
     /**
     * The console command name.
     *
     * @var string
     */
-    protected $name = 'wrapper:model';
+    protected $name = 'wrapper:generate';
 
     /**
     * The console command description.
     *
     * @var string
     */
-    protected $description = 'Scaffolds a new model suitable for EloWrapper.';
+    protected $description = 'Scaffolds a new wrapper.';
 
     /**
-    * Model generator instance.
+    * Wrapper generator instance.
     *
-    * @var EloWrapper\Generators\ModelGenerator
+    * @var EloWrapper\Generators\WrapperGenerator
     */
-    protected $modeler;
+    protected $generator;
 
     /**
-    * Create a new command instance.
+    * Create a new command instance
     *
     * @return void
     */
-    public function __construct(ModelGenerator $modeler)
+    public function __construct(WrapperGenerator $generator)
     {
         parent::__construct();
 
-        $this->modeler  = $modeler;
+        $this->generator  = $generator;
     }
 
     /**
@@ -50,7 +50,7 @@ class ModelCommand extends Command
     {
         $name = $this->input->getArgument('name');
 
-        $this->writeModel($name);
+        $this->writeWrapper($name);
 
     }
 
@@ -65,31 +65,31 @@ class ModelCommand extends Command
             [
                 'name',
                 InputArgument::REQUIRED,
-                'Name to use for the scaffolding of the model.'
+                'Name to use for the scaffolding of the wrapper.'
             ]
         ];
     }
 
     /**
-    * Write the model file to disk.
+    * Write the wrapper file to disk.
     *
     * @param  string  $name
     * @return string
     */
-    protected function writeModel($name)
+    protected function writeWrapper($name)
     {
-        $output = pathinfo($this->modeler->create($name, $this->getModelsPath()), PATHINFO_FILENAME);
+        $output = pathinfo($this->generator->create($name, $this->getWrappersPath()), PATHINFO_FILENAME);
 
         $this->line("      <fg=green;options=bold>create</fg=green;options=bold>  $output");
     }
 
     /**
-    * Get the path to the models directory.
+    * Get the path to the wrappers directory.
     *
     * @return string
     */
-    protected function getModelsPath()
+    protected function getWrappersPath()
     {
-        return $this->laravel['path.base'].'/app';
+        return $this->laravel['path.base'].'/app/Wrappers';
     }
 }

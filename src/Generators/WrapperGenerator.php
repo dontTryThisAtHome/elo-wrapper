@@ -14,7 +14,7 @@ class ModelGenerator extends Generator
     public function create($name, $path)
     {
         $path = $this->getPath($name, $path);
-        $stub = $this->getStub('model');
+        $stub = $this->getStub('wrapper');
         $this->files->put($path, $this->parseStub($stub, array(
             'class' => $this->classify($name)
         )));

@@ -1,7 +1,8 @@
 <?php
 
 return [
-    //App\EloquentModel::class => [
-    //  "testAction"=>App\Actions\TestAction::class
-    //]
+    App\User::class => [
+        'test' => EloWrapper\Wrappers\Test::class
+    ],
+    // Register you own wrappers according Test wrapper schema above
 ];

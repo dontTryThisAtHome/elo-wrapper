@@ -4,7 +4,10 @@ namespace EloWrapper\Providers;
 
 use EloWrapper\Console\ModelCommand;
 use Illuminate\Support\ServiceProvider;
+use EloWrapper\Console\GenerateCommand;
 use EloWrapper\Generators\ModelGenerator;
+use EloWrapper\Generators\WrapperGenerator;
+
 
 class EloWrapperServiceProvider extends ServiceProvider
 {
@@ -38,7 +41,8 @@ class EloWrapperServiceProvider extends ServiceProvider
     public function registerCommands()
     {
         $this->registerModelCommand();
-        $this->commands('command.elo_wrapper.model');
+        $this->registerGenerateCommand();
+        $this->commands('command.elo_wrapper.model','command.elo_wrapper.generate');
     }
 
     /**
@@ -56,12 +60,26 @@ class EloWrapperServiceProvider extends ServiceProvider
     }
 
     /**
+     * Register the 'wrapper:generate' command.
+     *
+     * @return void
+     */
+    protected function registerGenerateCommand()
+    {
+        $this->app->singleton('command.elo_wrapper.generate', function($app) {
+            $generator = new WrapperGenerator($app['files']);
+
+            return new GenerateCommand($generator);
+        });
+    }
+
+    /**
      * Get the services provided by the provider.
      *
      * @return array
      */
     public function provides()
     {
-        return ['command.elo_wrapper.model'];
+        return ['command.elo_wrapper.model','command.elo_wrapper.generate'];
     }
 }

@@ -1,6 +1,6 @@
 {
     "name": "donttrythisathome/elo-wrapper",
-    "description": "EloWrapper is an wrapper around Laravel Eloquent model that allows you to create specific model actions in separated classes.",
+    "description": "EloWrapper is an wrapper around Laravel Eloquent model that allows you to create specific model actions in separated wrapper classes.",
     "type": "library",
     "keywords": ["decorator", "wrapper", "laravel 5", "eloquent", "model"],
     "license": "MIT",
@@ -11,13 +11,6 @@
         }
     ],
     "require": {
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "EloWrapper\\Providers\\EloWrapperServiceProvider"
-            ]
-        }
     },
     "autoload": {
         "psr-4": {

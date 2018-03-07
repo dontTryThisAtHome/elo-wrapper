@@ -77,7 +77,7 @@ abstract class Generator
     }
 
     /**
-     * Inflect to a class name
+     * Inflect to a class name.
      *
      * @param string $input
      * @return string
