@@ -2,7 +2,7 @@
 
 namespace EloWrapper\Generators;
 
-class ModelGenerator extends Generator
+class WrapperGenerator extends Generator
 {
     /**
      * Create a new model at the given path.
