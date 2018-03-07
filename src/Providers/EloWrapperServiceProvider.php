@@ -2,7 +2,7 @@
 
 namespace EloWrapper\Providers;
 
-use EloWrapper\Commands\ModelCommand;
+use EloWrapper\Console\ModelCommand;
 use Illuminate\Support\ServiceProvider;
 use EloWrapper\Generators\ModelGenerator;
 
@@ -46,12 +46,12 @@ class EloWrapperServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerInstallCommand()
+    protected function registerModelCommand()
     {
         $this->app->singleton('command.elo_wrapper.model', function($app) {
             $modeler  = new ModelGenerator($app['files']);
 
-            return new RecordCommand($modeler);
+            return new ModelCommand($modeler);
         });
     }
 

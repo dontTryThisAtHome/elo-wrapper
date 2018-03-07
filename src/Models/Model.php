@@ -1,6 +1,6 @@
 <?php
 
-namespace Dontrythisathome\EloWrapper;
+namespace EloWrapper\Models;
 
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
