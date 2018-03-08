@@ -9,31 +9,31 @@ use Symfony\Component\Console\Input\InputArgument;
 class GenerateCommand extends Command
 {
     /**
-    * The console command name.
-    *
-    * @var string
-    */
+     * The console command name.
+     *
+     * @var string
+     */
     protected $name = 'wrapper:generate';
 
     /**
-    * The console command description.
-    *
-    * @var string
-    */
+     * The console command description.
+     *
+     * @var string
+     */
     protected $description = 'Scaffolds a new wrapper.';
 
     /**
-    * Wrapper generator instance.
-    *
-    * @var EloWrapper\Generators\WrapperGenerator
-    */
+     * Wrapper generator instance.
+     *
+     * @var EloWrapper\Generators\WrapperGenerator
+     */
     protected $generator;
 
     /**
-    * Create a new command instance
-    *
-    * @return void
-    */
+     * Create a new command instance
+     *
+     * @return void
+     */
     public function __construct(WrapperGenerator $generator)
     {
         parent::__construct();
@@ -42,10 +42,10 @@ class GenerateCommand extends Command
     }
 
     /**
-    * Execute the console command.
-    *
-    * @return void
-    */
+     * Execute the console command.
+     *
+     * @return void
+     */
     public function fire()
     {
         $name = $this->input->getArgument('name');
@@ -55,10 +55,10 @@ class GenerateCommand extends Command
     }
 
     /**
-    * Get the command arguments.
-    *
-    * @return array
-    */
+     * Get the command arguments.
+     *
+     * @return array
+     */
     protected function getArguments()
     {
         return [
@@ -71,11 +71,11 @@ class GenerateCommand extends Command
     }
 
     /**
-    * Write the wrapper file to disk.
-    *
-    * @param  string  $name
-    * @return string
-    */
+     * Write the wrapper file to disk.
+     *
+     * @param  string  $name
+     * @return string
+     */
     protected function writeWrapper($name)
     {
         $output = pathinfo($this->generator->create($name, $this->getWrappersPath()), PATHINFO_FILENAME);
@@ -84,12 +84,12 @@ class GenerateCommand extends Command
     }
 
     /**
-    * Get the path to the wrappers directory.
-    *
-    * @return string
-    */
+     * Get the path to the wrappers directory.
+     *
+     * @return string
+     */
     protected function getWrappersPath()
     {
-        return $this->laravel['path.base'].'/app/Wrappers';
+        return app_path('Wrappers');
     }
 }

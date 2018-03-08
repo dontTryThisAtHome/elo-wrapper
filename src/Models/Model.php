@@ -15,10 +15,34 @@ class Model extends BaseModel
      */
     public function __call($method, $attributes)
     {
-        if ($class = config('actions')[get_class($this)][$method]??null){
-            return (new $class($this))->perform(...$attributes);
+        if (!$wrapper = $this->resolveWrapper($method)){
+            return parent::__call($method, $attributes);
         }
 
-        return parent::__call($method, $attributes);
+        return $wrapper->perform(...$attributes);
+    }
+
+    /**
+     * Resolve the wrapper.
+     *
+     * @param  string $method
+     * @return mixed
+     */
+    protected function resolveWrapper(string $method)
+    {
+        if (!$className = $this->resolveWrapperClassName($method)) return;
+
+        return app()->makeWith($className,['model'=>$this]);
+    }
+
+    /**
+     * Resolve the wrapper class name.
+     *
+     * @param  string $method
+     * @return string
+     */
+    protected function resolveWrapperClassName(string $method)
+    {
+        return config('wrapper.'.get_class($this).'.'.$method);
     }
 }

@@ -9,31 +9,31 @@ use Symfony\Component\Console\Input\InputArgument;
 class ModelCommand extends Command
 {
     /**
-    * The console command name.
-    *
-    * @var string
-    */
+     * The console command name.
+     *
+     * @var string
+     */
     protected $name = 'wrapper:model';
 
     /**
-    * The console command description.
-    *
-    * @var string
-    */
+     * The console command description.
+     *
+     * @var string
+     */
     protected $description = 'Scaffolds a new model suitable for EloWrapper.';
 
     /**
-    * Model generator instance.
-    *
-    * @var EloWrapper\Generators\ModelGenerator
-    */
+     * Model generator instance.
+     *
+     * @var EloWrapper\Generators\ModelGenerator
+     */
     protected $modeler;
 
     /**
-    * Create a new command instance.
-    *
-    * @return void
-    */
+     * Create a new command instance.
+     *
+     * @return void
+     */
     public function __construct(ModelGenerator $modeler)
     {
         parent::__construct();
@@ -42,10 +42,10 @@ class ModelCommand extends Command
     }
 
     /**
-    * Execute the console command.
-    *
-    * @return void
-    */
+     * Execute the console command.
+     *
+     * @return void
+     */
     public function fire()
     {
         $name = $this->input->getArgument('name');
@@ -55,10 +55,10 @@ class ModelCommand extends Command
     }
 
     /**
-    * Get the command arguments.
-    *
-    * @return array
-    */
+     * Get the command arguments.
+     *
+     * @return array
+     */
     protected function getArguments()
     {
         return [
@@ -71,11 +71,11 @@ class ModelCommand extends Command
     }
 
     /**
-    * Write the model file to disk.
-    *
-    * @param  string  $name
-    * @return string
-    */
+     * Write the model file to disk.
+     *
+     * @param  string  $name
+     * @return string
+     */
     protected function writeModel($name)
     {
         $output = pathinfo($this->modeler->create($name, $this->getModelsPath()), PATHINFO_FILENAME);
@@ -84,12 +84,12 @@ class ModelCommand extends Command
     }
 
     /**
-    * Get the path to the models directory.
-    *
-    * @return string
-    */
+     * Get the path to the models directory.
+     *
+     * @return string
+     */
     protected function getModelsPath()
     {
-        return $this->laravel['path.base'].'/app';
+        return app_path();
     }
 }

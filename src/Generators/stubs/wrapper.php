@@ -13,6 +13,6 @@ class {{class}} extends BaseWrapper
      */
     public function perform()
     {
-        // Here you can specify wrapper actions
+        // Here you can specify wrapper actions.
     }
 }

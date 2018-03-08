@@ -12,7 +12,7 @@ use EloWrapper\Generators\WrapperGenerator;
 class EloWrapperServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
+     * Bootstrap the EloWrapper.
      *
      * @return void
      */
@@ -20,11 +20,12 @@ class EloWrapperServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../../config/config.php' => config_path('wrapper.php'),
+            __DIR__.'/../../wrappers' => app_path('Wrappers')
         ]);
     }
 
     /**
-     * Register the application services.
+     * Register the EloWrapper.
      *
      * @return void
      */
@@ -74,7 +75,7 @@ class EloWrapperServiceProvider extends ServiceProvider
     }
 
     /**
-     * Get the services provided by the provider.
+     * Get the services provided by the EloWrapper provider.
      *
      * @return array
      */

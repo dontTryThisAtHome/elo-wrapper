@@ -2,7 +2,7 @@
 
 namespace EloWrapper\Wrappers;
 
-use Illuminate\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Wrapper
 {
@@ -16,7 +16,8 @@ class Wrapper
     /**
      * Creates a new Wrapper instance.
      *
-     * @return
+     * @param  Illuminate\Database\Eloquent\Model $model
+     * @return void
      */
     public function __construct(Model $model)
     {
@@ -33,5 +34,30 @@ class Wrapper
     public function __call($method,$parameters)
     {
         return $this->model->$method(...$parameters);
+    }
+
+    /**
+     * Dynamically retrieve attributes on the model.
+     *
+     * @param string $parameter
+     * @return miixed
+     */
+    public function __get($parameter)
+    {
+        return $this->model->$parameter;
+    }
+
+    /**
+     * Dynamically set attributes on the model.
+     *
+     * @param string $parameter
+     * @param mixed $value
+     * @return this instance
+     */
+    public function __set($parameter,$value)
+    {
+        $this->model->$parameter = $value;
+
+        return $this;
     }
 }

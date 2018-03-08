@@ -1,16 +1,18 @@
 <?php
 
-namespace EloWrapper;
+namespace EloWrapper\Wrappers;
 
 class Test extends Wrapper
 {
     /**
-     * Perform wrapper action.
+     * Perform the wrapper action.
      *
      * @return mixed
      */
     public function perform()
     {
-        return $this->newModelInstance(['name'=>'Hello world!']);
+        $this->name = 'Hello world';
+
+        return $this->model;
     }
 }
