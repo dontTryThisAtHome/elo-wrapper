@@ -15,14 +15,9 @@
         "php": ">=7.0.0",
         "illuminate/support": "~5.0"
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Dtth\\EloWrapper\\Tests\\": "tests/"
-        }
-    },
     "autoload": {
         "psr-4": {
-            "Dtth\\EloWrapper\\": "src/"
+            "EloWrapper\\": "src/"
         }
     }
 }
