@@ -7,15 +7,23 @@
     "authors": [
         {
             "name": "Constantine Derkach",
-            "email": "derkach@benefitty.ru"
+            "email": "koderkach@gmail.com",
+            "role":"Developer"
         }
     ],
     "require": {
+        "php": ">=7.0.0",
+        "illuminate/support": "~5.0",
+
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EloWrapper\\Tests\\": "tests/"
+        }
     },
     "autoload": {
         "psr-4": {
             "EloWrapper\\": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
